@@ -6,6 +6,9 @@
 //so maximum value (3) * math.random() will give us value 0~2.999999. need to floor it.
 //if  0 -> return rock; if 1 -> return paper; if 2-> return scissors;
 
+//declaring the players score variables
+let humanScore = 0;
+let computerScore = 0;
 
 
 function getComputerChoice()
@@ -44,7 +47,7 @@ function getHumanChoice()
         return;
     }
 
-    console.log(userChoice);
+    // console.log(userChoice);
 
     switch(parseInt(userChoice)){
         case 0: return "rock";
@@ -100,25 +103,40 @@ function tied()
 }
 function win(humanChoice, computerChoice)
 {
-    return "You Win!" + " " + humanChoice + " beats " +computerChoice+".";
     humanScore++;
+    return "You Win!" + " " + humanChoice + " beats " +computerChoice+".";
 }
 function lose(humanChoice, computerChoice)
 {
-    return "You Lose!" + " " + computerChoice + " beats " +humanChoice+".";
     computerScore++;
+    return "You Lose!" + " " + computerChoice + " beats " +humanChoice+".";
 }
 
 
-//MAIN CODE
 
-//declaring the players score variables
-let humanScore = 0;
-let computerScore = 0;
+// playGame function
+// input param: none;
+// console output: game result / scores.
+
+//for loop to go over the program five times;
 
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-console.log(playRound(humanSelection, computerSelection));
-console.log(humanSelection, computerSelection)
+
+function playGame()
+{
+
+
+
+    for(let i = 0; i<5; i++)
+    {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        console.log(playRound(humanSelection, computerSelection));
+        console.log("Human Score: " + humanScore + "\tComputer Score: "+computerScore+"\n");
+    }
+}
+
+
+playGame()
