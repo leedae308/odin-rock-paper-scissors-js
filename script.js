@@ -37,28 +37,21 @@ function getComputerChoice()
 
 function getHumanChoice()
 {
-    let userChoice = prompt("Rock - 0 ; Scissors - 1 ; Paper - 2");
+    const userChoice = prompt("Rock - 0 ; Scissors - 1 ; Paper - 2");
     if(!(userChoice==0 || userChoice==1 || userChoice==2))
     {
         console.log("Invalid Input");
+        return;
     }
-    else
-    {
-        switch(userChoice){
-            case 0:
-                return "rock";
-            case 1:
-                return "scissors";
-            case 2:
-                return "paper";
-            default:
-                return "rock";
-        }
+
+    console.log(userChoice);
+
+    switch(parseInt(userChoice)){
+        case 0: return "rock";
+        case 1: return "scissors";
+        case 2: return "paper";
     }
-    return;
 }
-
-
 
 
 //playRound function.
@@ -128,3 +121,4 @@ const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
 console.log(playRound(humanSelection, computerSelection));
+console.log(humanSelection, computerSelection)
