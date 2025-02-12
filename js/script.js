@@ -145,6 +145,7 @@ btn.forEach((button)=>{
     button.addEventListener("click", (e) =>{
         //alert(button.innerText.toLowerCase());
         result.textContent=playRound(button.innerText.toLowerCase(), getComputerChoice());
+        score.textContent = "Current Score: Human " + humanScore + " vs. Computer "+computerScore;
     });
 });
 
@@ -153,11 +154,20 @@ const div = document.createElement("div");
 div.classList.add("resultScreen");
 
 const score = document.createElement("div");
-score.textContent = "Current Score: Human " + humanScore + " vs. Computer "+computerScore;
+score.textContent="Current Score: Human 0 vs. Computer 0";
 
 const result = document.createElement("div");
 result.classList.add("result");
+result.textContent="Start the Game to see the result";
 
 div.appendChild(score);
 div.appendChild(result);
 section.appendChild(div);
+
+
+//running the game
+// let count = 0;
+// while(count <=4)
+// {
+    
+// }
