@@ -37,21 +37,21 @@ function getComputerChoice() {
 
 
 
-function getHumanChoice() {
-    const userChoice = prompt("Rock - 0 ; Scissors - 1 ; Paper - 2");
-    if (!(userChoice == 0 || userChoice == 1 || userChoice == 2)) {
-        console.log("Invalid Input");
-        return;
-    }
+// function getHumanChoice() {
+//     const userChoice = prompt("Rock - 0 ; Scissors - 1 ; Paper - 2");
+//     if (!(userChoice == 0 || userChoice == 1 || userChoice == 2)) {
+//         console.log("Invalid Input");
+//         return;
+//     }
 
-    // console.log(userChoice);
+//     // console.log(userChoice);
 
-    switch (parseInt(userChoice)) {
-        case 0: return "rock";
-        case 1: return "scissors";
-        case 2: return "paper";
-    }
-}
+//     switch (parseInt(userChoice)) {
+//         case 0: return "rock";
+//         case 1: return "scissors";
+//         case 2: return "paper";
+//     }
+// }
 
 
 //playRound function.
@@ -144,6 +144,20 @@ const btn=document.querySelectorAll('.buttons');
 btn.forEach((button)=>{
     button.addEventListener("click", (e) =>{
         //alert(button.innerText.toLowerCase());
-        alert(playRound(button.innerText.toLowerCase(), getComputerChoice()));
+        result.textContent=playRound(button.innerText.toLowerCase(), getComputerChoice());
     });
 });
+
+//adding a score place
+const div = document.createElement("div");
+div.classList.add("resultScreen");
+
+const score = document.createElement("div");
+score.textContent = "Current Score: Human " + humanScore + " vs. Computer "+computerScore;
+
+const result = document.createElement("div");
+result.classList.add("result");
+
+div.appendChild(score);
+div.appendChild(result);
+section.appendChild(div);
