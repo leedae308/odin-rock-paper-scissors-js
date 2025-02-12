@@ -9,6 +9,7 @@
 //declaring the players score variables
 let humanScore = 0;
 let computerScore = 0;
+let gameCount=0;
 
 
 function getComputerChoice() {
@@ -146,6 +147,14 @@ btn.forEach((button)=>{
         //alert(button.innerText.toLowerCase());
         result.textContent=playRound(button.innerText.toLowerCase(), getComputerChoice());
         score.textContent = "Current Score: Human " + humanScore + " vs. Computer "+computerScore;
+        gameCount++;
+        if(gameCount==5)
+        {
+            if(humanScore>computerScore) finalResult.textContent="Winner: Human!";
+            else if (computerScore>humanScore) finalResult.textContent="Winner: Computer!";
+            else finalResult.textContent="TIED!";
+            section.appendChild(finalResult);
+        }            
     });
 });
 
@@ -163,6 +172,15 @@ result.textContent="Start the Game to see the result";
 div.appendChild(score);
 div.appendChild(result);
 section.appendChild(div);
+
+
+//Five Games Limit + Final Result;
+const finalResult = document.createElement("h1");
+
+
+
+
+
 
 
 //running the game
