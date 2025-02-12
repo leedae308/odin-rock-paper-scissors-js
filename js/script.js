@@ -11,11 +11,10 @@ let humanScore = 0;
 let computerScore = 0;
 
 
-function getComputerChoice()
-{
-    let value = Math.floor(3* Math.random());
+function getComputerChoice() {
+    let value = Math.floor(3 * Math.random());
 
-    switch(value){
+    switch (value) {
         case 0:
             return "rock";
         case 1:
@@ -25,7 +24,7 @@ function getComputerChoice()
         default:
             return "rock";
     }
-    
+
     return;
 }
 
@@ -38,18 +37,16 @@ function getComputerChoice()
 
 
 
-function getHumanChoice()
-{
+function getHumanChoice() {
     const userChoice = prompt("Rock - 0 ; Scissors - 1 ; Paper - 2");
-    if(!(userChoice==0 || userChoice==1 || userChoice==2))
-    {
+    if (!(userChoice == 0 || userChoice == 1 || userChoice == 2)) {
         console.log("Invalid Input");
         return;
     }
 
     // console.log(userChoice);
 
-    switch(parseInt(userChoice)){
+    switch (parseInt(userChoice)) {
         case 0: return "rock";
         case 1: return "scissors";
         case 2: return "paper";
@@ -65,30 +62,23 @@ function getHumanChoice()
 //      rock        rock        Tied. Try Again!
 //      paper       paper       Tied. Try Again!
 
-function playRound(humanChoice, computerChoice)
-{
-    if(humanChoice=="rock")
-    {
-        switch(computerChoice)
-        {
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice == "rock") {
+        switch (computerChoice) {
             case "rock": return tied();
             case "paper": return lose(humanChoice, computerChoice);
             case "scissors": return win(humanChoice, computerChoice);
         }
     }
-    else if(humanChoice=="scissors")
-    {
-        switch(computerChoice)
-        {
+    else if (humanChoice == "scissors") {
+        switch (computerChoice) {
             case "scissors": return tied();
             case "rock": return lose(humanChoice, computerChoice);
             case "paper": return win(humanChoice, computerChoice);
         }
     }
-    else if (humanChoice=="paper")
-    {
-        switch(computerChoice)
-        {
+    else if (humanChoice == "paper") {
+        switch (computerChoice) {
             case "paper": return tied();
             case "scissors": return lose(humanChoice, computerChoice);
             case "rock": return win(humanChoice, computerChoice);
@@ -97,19 +87,16 @@ function playRound(humanChoice, computerChoice)
 }
 
 
-function tied()
-{
+function tied() {
     return "Tied. Try Again!";
 }
-function win(humanChoice, computerChoice)
-{
+function win(humanChoice, computerChoice) {
     humanScore++;
-    return "You Win!" + " " + humanChoice + " beats " +computerChoice+".";
+    return "You Win!" + " " + humanChoice + " beats " + computerChoice + ".";
 }
-function lose(humanChoice, computerChoice)
-{
+function lose(humanChoice, computerChoice) {
     computerScore++;
-    return "You Lose!" + " " + computerChoice + " beats " +humanChoice+".";
+    return "You Lose!" + " " + computerChoice + " beats " + humanChoice + ".";
 }
 
 
@@ -123,20 +110,40 @@ function lose(humanChoice, computerChoice)
 
 
 
-function playGame()
-{
+// function playGame() {
+
+//     const humanSelection = getHumanChoice();
+//     const computerSelection = getComputerChoice();
+
+//     console.log(playRound(humanSelection, computerSelection));
+//     console.log("Human Score: " + humanScore + "\tComputer Score: " + computerScore + "\n");
+// }
 
 
+//DOM Creation;
 
-    for(let i = 0; i<5; i++)
-    {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
+const buttonRock = document.createElement("BUTTON");
+const buttonPaper = document.createElement("BUTTON");
+const buttonScissors = document.createElement("BUTTON");
 
-        console.log(playRound(humanSelection, computerSelection));
-        console.log("Human Score: " + humanScore + "\tComputer Score: "+computerScore+"\n");
-    }
-}
+buttonRock.classList.add("buttons");
+buttonPaper.classList.add("buttons");
+buttonScissors.classList.add("buttons");
 
+const section = document.querySelector("body");
+section.appendChild(buttonRock);
+section.appendChild(buttonPaper);
+section.appendChild(buttonScissors);
 
-playGame()
+buttonRock.innerText="Rock";
+buttonPaper.innerText="Paper";
+buttonScissors.innerText="Scissors";
+
+const btn=document.querySelectorAll('.buttons');
+
+btn.forEach((button)=>{
+    button.addEventListener("click", (e) =>{
+        //alert(button.innerText.toLowerCase());
+        alert(playRound(button.innerText.toLowerCase(), getComputerChoice()));
+    });
+});
